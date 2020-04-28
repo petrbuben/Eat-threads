@@ -1,0 +1,7 @@
+#ifndef MONITOR_HPP_INCLUDED
+#define MONITOR_HPP_INCLUDED
+
+int monitor();
+
+#endif // MONITOR_HPP_INCLUDED
+
