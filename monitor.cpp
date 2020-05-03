@@ -1,25 +1,27 @@
 #include <iostream>
-//using namespace std;
+#include <thread>
+#include <mutex>
 
-int monitor(){
+//nebudeme v tomto pripade pouzivat condition variable pro synchronizaci threads
 
-	static char in = '1';
-	int c = 1;
+extern int g_soucet;
+std::mutex m;
 
-	std::cout << "K zastaveni, zmacknete 0\n";
-	//cin;
-
-	while (1){
-
-		std::cin >> in;
-
-		if (in == '0')
-		break;
-
-		std::cout<< "Zaznam c. " << c-1 << "  hodnota " <<in << std::endl;
-		c++;
-	}
-
-	return c;
-}
-
+int monitor(char ** result, int pi){
+    *result = new char[256];
+    int in;
+    
+     std::cout<<"device enter 1 digit number, thread " << pi <<std::endl;
+     
+     if (!(std::cin))  std::cin.clear(); // cin fix
+     std::cin>>in;
+     
+     if (m.try_lock()){
+     g_soucet += in;  //critical code
+     m.unlock();
+     }
+     
+     snprintf(*result, 256, "Thread id:%d  data in:%d  soucet %d  function number %d", std::this_thread::get_id(), in, g_soucet, pi);
+     
+     return pi;
+}      
