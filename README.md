@@ -1,7 +1,7 @@
 # Eat
 threads demo
 
-threads demo, one function serving threads
+one function serving threads
 
 with future promise, conditional variable/lock and atomic variable
 
