@@ -1,4 +1,4 @@
-# Eat
+# Eat-threads
 threads demo
 
 one function serving threads
